@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const app = express();
 const authRoute = require('./routes/auth');
+const userRoute = require('./routes/users');
+const roomRoute = require('./routes/rooms');
+const hotelRoute = require('./routes/hotels');
 
 DB_Connection_URL = process.env.MONGO;
 
@@ -31,6 +34,9 @@ app.get("/", (req,res)=>{
 
 //middlewares
 app.use("/auth", authRoute);
+app.use("/user", userRoute);
+app.use("/room", roomRoute);
+app.use("/hotel", hotelRoute);
 
 
 app.listen(8800, ()=>{
