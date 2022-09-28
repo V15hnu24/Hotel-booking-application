@@ -2,12 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const app = express();
+app.use(express.json());
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const roomRoute = require('./routes/rooms');
 const hotelRoute = require('./routes/hotels');
 
-DB_Connection_URL = process.env.MONGO;
+DB_Connection_URL = "mongodb+srv://Vishnu:VishnuMongodb@cluster0.ucy6gbg.mongodb.net/?retryWrites=true&w=majority";
 
 const DBconnect = async () => {
     try{
@@ -33,13 +34,12 @@ app.get("/", (req,res)=>{
 
 
 //middlewares
+
 app.use("/auth", authRoute);
-app.use("/user", userRoute);
-app.use("/room", roomRoute);
-app.use("/hotel", hotelRoute);
+app.use('/hotel', hotelRoute);
 
 
 app.listen(8800, ()=>{
-    DBconnect()
+    DBconnect();
     console.log("Connected to main file of backend!");
 });
