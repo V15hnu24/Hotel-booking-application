@@ -8,7 +8,7 @@ const userRoute = require('./routes/users');
 const roomRoute = require('./routes/rooms');
 const hotelRoute = require('./routes/hotels');
 
-DB_Connection_URL = "mongodb+srv://Vishnu:VishnuMongodb@cluster0.ucy6gbg.mongodb.net/?retryWrites=true&w=majority";
+DB_Connection_URL = process.env.Mongo;
 
 const DBconnect = async () => {
     try{
