@@ -7,6 +7,7 @@ const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const roomRoute = require('./routes/rooms');
 const hotelRoute = require('./routes/hotels');
+const cookieParser = require('cookie-parser');
 
 DB_Connection_URL = process.env.Mongo;
 
@@ -35,9 +36,21 @@ app.get("/", (req,res)=>{
 
 //middlewares
 
+app.use(cookieParser());
 app.use("/auth", authRoute);
 app.use('/hotel', hotelRoute);
+app.use('/user',userRoute);
 
+app.use((err, req, res, next)=>{
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Something not right!!";
+    return res.status(errorStatus).json({
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack
+    });
+})
 
 app.listen(8800, ()=>{
     DBconnect();
