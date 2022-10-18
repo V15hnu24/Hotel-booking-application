@@ -9,7 +9,7 @@ const roomRoute = require('./routes/rooms');
 const hotelRoute = require('./routes/hotels');
 const cookieParser = require('cookie-parser');
 
-DB_Connection_URL = process.env.Mongo;
+const DB_Connection_URL = process.env.Mongo;
 
 const DBconnect = async () => {
     try{
@@ -40,6 +40,7 @@ app.use(cookieParser());
 app.use("/auth", authRoute);
 app.use('/hotel', hotelRoute);
 app.use('/user',userRoute);
+app.use('/room',roomRoute);
 
 app.use((err, req, res, next)=>{
     const errorStatus = err.status || 500;

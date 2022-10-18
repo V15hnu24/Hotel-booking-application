@@ -8,7 +8,8 @@ const hotelSchema = new mongoose.Schema({
     type:{
         type:String,
         required:true
-    }
+    },
+    rooms:[String]
     /*
     city:{
         type:String,
